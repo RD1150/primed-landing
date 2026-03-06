@@ -829,17 +829,17 @@
     function handleSignup() {
       const email = document.getElementById("ctaEmail").value.trim();
       if (email && email.includes("@") && email.includes(".")) {
-        document.getElementById("ctaForm").style.display = "none";
-        document.getElementById("ctaSuccess").classList.add("show");
-
-        // TODO: Replace with your email service integration
-        // Example for ConvertKit:
-        // fetch('https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({ api_key: 'YOUR_KEY', email: email })
-        // });
-        console.log("Signup:", email);
+        fetch("https://api.convertkit.com/v3/forms/9169545/subscribe", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ api_key: "enaZb8MG05uHwGht5I-kyg", email: email })
+        }).then(() => {
+          document.getElementById("ctaForm").style.display = "none";
+          document.getElementById("ctaSuccess").classList.add("show");
+        }).catch(() => {
+          document.getElementById("ctaForm").style.display = "none";
+          document.getElementById("ctaSuccess").classList.add("show");
+        });
       }
     }
 
